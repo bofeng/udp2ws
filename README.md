@@ -1,6 +1,6 @@
 # udp2ws
 
-pipe udp server data to websocket server
+This is a toy tool that will setup a udp server and a websocket server, and broadcast the data it received from the UDP port to all connected websocket clients.
 
 ## Run server
 
