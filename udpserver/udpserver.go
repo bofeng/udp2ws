@@ -69,9 +69,12 @@ func (s *UPDServer) Run() {
 			n, err := udpConn.Read(buf)
 			if err != nil {
 				log.Fatalln("Failed to read UDP data:", err)
-				break
 			}
-			udpDataChan <- buf[:n]
+			// buf will be used for next read, so here we
+			// send a data copy to the channel to consume
+			bufCopy := make([]byte, n)
+			copy(bufCopy, buf)
+			udpDataChan <- bufCopy
 		}
 	}()
 
